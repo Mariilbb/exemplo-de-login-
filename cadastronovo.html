@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Cadastro</title>
+    <link href="https://fonts.googleapis.com/css2?family=Jersey+10&display=swap" rel="stylesheet">
+    <style>
+        body {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+            background-color: #FBB6CE;
+            margin: 0;
+        }
+
+        .container {
+            padding: 20px;
+            border-radius: 10px;
+            background-color: #fff;
+            width: 100%;
+            max-width: 450px;
+            text-align: center;
+            border: 2px solid #000000;
+            box-sizing: border-box;
+        }
+
+        h1 {
+            font-family: "Jersey 10";
+            font-size: 60px;
+            color: #b401c1;
+            margin: 0 0 15px;
+        }
+
+        form {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .input-container {
+            margin-bottom: 10px;
+            width: 100%;
+        }
+
+        input {
+            width: 100%; /* Largura total do container */
+            padding: 10px;
+            border: 1px solid #b5b5b5;
+            border-radius: 5px;
+            margin: 0 0 10px; /* Adiciona margem inferior */
+            box-sizing: border-box; /* Inclui padding e borda na largura total */
+        }
+
+        button {
+            width: 100%; /* Largura total do container */
+            padding: 10px;
+            margin-top: 10px;
+            background-color: #4CAF50;
+            color: #ffffff;
+            border: none;
+            box-sizing: border-box; /* Inclui padding e borda na largura total */
+        }
+
+        button:hover {
+            background-color: #45a049;
+        }
+
+        .link-container {
+            margin-top: 15px;
+        }
+
+        .link-container a {
+            color: #008CBA;
+            text-decoration: none;
+            font-size: 16px;
+        }
+
+        .link-container a:hover {
+            color: #005f8a;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Cadastro</h1>
+        <form id="cadastroForm">
+            <div class="input-container">
+                <input type="text" name="nome" placeholder="Nome" required>
+            </div>
+            <div class="input-container">
+                <input type="text" name="sobrenome" placeholder="Sobrenome" required>
+            </div>
+            <div class="input-container">
+                <input type="email" name="email" placeholder="Email" required>
+            </div>
+            <div class="input-container">
+                <input type="password" name="senha" placeholder="Senha" required>
+            </div>
+            <div class="input-container">
+                <input type="password" name="confirma_senha" placeholder="Confirmar Senha" required>
+            </div>
+            <div class="input-container">
+                <input type="date" name="data_nascimento" required>
+            </div>
+            <button type="submit">Cadastrar</button>
+            <div class="link-container">
+                <a href="loginnovo.html">Voltar</a>
+            </div>
+        </form>
+    </div>
+
+    <script>
+        document.getElementById('cadastroForm').onsubmit = function(event) {
+            event.preventDefault();
+            var formData = new FormData(this);
+
+            fetch('cadastronovo.php', {
+                method: 'POST',
+                body: formData
+            }).then(response => response.text())
+              .then(data => alert(data));
+        };
+    </script>
+</body>
+</html>

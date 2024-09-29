@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Login</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Jersey+10&display=swap" rel="stylesheet">
+    <style>
+        body {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+            background-color: #FBB6CE;
+        }
+
+        .container {
+            border: 2px solid #000;
+            padding: 20px;
+            border-radius: 10px;
+            background-color: #fff;
+            width: 100%;
+            max-width: 400px; 
+            text-align: center;
+        }
+
+        h1 {
+            font-family: "Jersey 10";
+            font-size: 60px;
+            color: #b401c1;
+            margin: 10px 0 20px; 
+        }
+
+        form {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .input-container {
+            display: flex;
+            align-items: center;
+            margin-bottom: 10px;
+            width: 100%;
+        }
+
+        i {
+            margin-right: 10px;
+            color: #1f15d0;
+        }
+
+        input {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #b5b5b5;
+            border-radius: 5px;
+        }
+
+        button {
+            width: 100%;
+            padding: 10px;
+            margin-top: 10px;
+            background-color: #4CAF50;
+            color: #ffffff;
+            border: none; 
+        }
+
+        button:hover {
+            background-color: #45a049;
+        }
+
+        .link-container {
+            margin-top: 10px;
+        }
+
+        .link-container a {
+            color: #008CBA;
+            text-decoration: none;
+        }
+
+        .link-container a:hover {
+            color: #005f8a;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Login</h1>
+        <form id="loginForm">
+            <div class="input-container">
+                <i class="fas fa-user"></i>
+                <input type="text" name="usuario" placeholder="Usuário" required>
+            </div>
+            <div class="input-container">
+                <i class="fas fa-key"></i>
+                <input type="password" name="senha" placeholder="Senha" required>
+            </div>
+            <button type="submit">Entrar</button>
+            <div class="link-container">
+                <a href="cadastronovo.html">Cadastrar</a>
+            </div>
+        </form>
+    </div>
+
+    <script>
+        document.getElementById('loginForm').onsubmit = function(event) {
+            event.preventDefault();
+            var formData = new FormData(this);
+    
+            fetch('loginnovo.php', {
+                method: 'POST',
+                body: formData
+            }).then(response => response.text())
+              .then(data => {
+                  if (data.trim() === 'success') {
+                      window.location.href = 'gretanovo.html';
+                  } else {
+                      alert(data);
+                  }
+              });
+        };
+    </script>    
+</body>
+</html>
